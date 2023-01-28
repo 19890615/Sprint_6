@@ -6,7 +6,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith (Parameterized.class)
 public class TestLion {
@@ -23,17 +23,24 @@ public class TestLion {
     public static Object[][] getLionParameters() {
         return new Object[][]{
                 {"Самка", false},
-                {"Самец", true}
+                {"Самец", true},
+                {"Другой", true}
         };
     }
 
     @Test
     public void lionTester() throws Exception {
         Feline family = new Feline();
-        Lion lion = new Lion(sex, family);
-        assertEquals(lion.doesHaveMane(), mane);
-        assertEquals(lion.getFood(), List.of("Животные", "Птицы", "Рыба"));
-        assertEquals(lion.getKittens(), 1);
+        try {
+            Lion lion = new Lion(sex, family);
+            assertEquals(lion.doesHaveMane(), mane);
+            assertEquals(lion.getFood(), List.of("Животные", "Птицы", "Рыба"));
+            assertEquals(lion.getKittens(), 1);
+        } catch (Exception exception){
+            assertEquals(exception.getMessage(), "Используйте допустимые значения пола животного - самец или самка");
+        }
+
+
     }
 
 }
