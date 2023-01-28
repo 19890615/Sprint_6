@@ -15,7 +15,7 @@ public class FelineTest {
     Feline feline;
 
     @Test
-    public void FelineTester() {
+    public void felineTester() {
         feline.getFamily();
         Mockito.verify(feline).getFamily();
         Mockito.when(feline.getFamily()).thenReturn("Кошачьи");
